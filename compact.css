@@ -1,9 +1,20 @@
 /* Компактный режим: интерактив и его управление остаются в одном экране. */
+.quick-ocean-detail { display: none; }
 @media (min-width: 901px) {
   main { max-width: 1400px; }
-  .hero { padding: 24px 0 20px; gap: 24px; align-items: start; }
-  .hero-copy { padding-top: 22px; }
-  .globe-card { padding: 14px; display: grid; grid-template-columns: minmax(0, 1fr) 190px; grid-template-areas: "top top" "world select" "footer footer"; column-gap: 12px; }
+  .hero { padding: 24px 0 20px; gap: 16px 24px; align-items: start; grid-template-areas: "copy globe" "detail globe"; grid-template-rows: auto auto; }
+  .hero-copy { grid-area: copy; padding-top: 22px; }
+  .hero h1 { font-size: clamp(48px, 4.8vw, 64px); }
+  .hero .lead { font-size: 15px; line-height: 1.55; }
+  .hero-meta { margin: 14px 0 16px; }
+  .hero-copy .hero-tip { display: none; }
+  .hero > .detail-card { grid-area: detail; margin-top: -20px; padding: 14px 18px; grid-template-columns: 1fr; gap: 6px; }
+  .hero > .detail-card h3 { font-size: 25px; margin: 3px 0 5px; }
+  .hero > .detail-card p:not(.eyebrow) { font-size: 12px; line-height: 1.45; }
+  .hero > .detail-card .detail-stat { border-left: 0; border-top: 1px solid var(--line); padding: 8px 0 0; display: flex; gap: 8px; align-items: baseline; justify-content: flex-start; }
+  .hero > .detail-card .detail-stat span { font-size: 32px; }
+  .hero > .detail-card .detail-stat small { font-size: 10px; }
+  .globe-card { grid-area: globe; padding: 14px; display: grid; grid-template-columns: minmax(0, 1fr) 190px; grid-template-areas: "top top" "world select" "footer footer"; column-gap: 12px; }
   .globe-top { grid-area: top; }
   #world { grid-area: world; height: 300px; }
   .globe-footer { grid-area: footer; }
@@ -21,20 +32,48 @@
 
   .page-heading { padding: 28px 0 18px; }
   .page-heading .lead { font-size: 16px; }
-  .model-wrap #model-canvas { height: 365px; }
+  .page-heading h1 { font-size: clamp(46px, 5vw, 64px); }
+  .page#model .page-heading { padding: 18px 0 12px; }
+  .model-wrap #model-canvas { height: 260px; }
   .model-toolbar { top: 12px; }
-  .model-info { margin-top: 12px; padding: 16px 20px; }
-  .model-info h3 { font-size: 25px; }
+  .model-info { margin-top: 8px; padding: 12px 16px; }
+  .model-info h3 { font-size: 22px; }
   .model-info p:not(.eyebrow) { font-size: 13px; }
-  .page#model > .note { margin-top: 12px; padding: 14px 18px; }
-  .page#coasts .coast-picture { min-height: 280px; }
-  .page#coasts .coast-explanation { padding: 24px; }
-  .page#life .life-banner { min-height: 250px; }
+  .page#model > .note { margin-top: 8px; padding: 10px 14px; }
+  .page#coasts .page-heading { padding: 18px 0 12px; }
+  .page#coasts .coast-picture { min-height: 230px; }
+  .page#coasts .coast-explanation { padding: 20px; }
+  .page#life .page-heading { padding: 18px 0 12px; }
+  .page#life .life-banner { min-height: 220px; }
   .page#life .creature-grid { margin-top: 14px; }
   .page#life .creature-detail { margin-top: 12px; padding: 18px 22px; }
+  .page#compare .page-heading { padding: 18px 0 12px; }
+  .page#compare .chart-card, .page#compare .bars-card { padding: 16px; }
+  .page#compare .two-cards, .page#compare .source-note, .page#compare > .next-section { display: none; }
+  .page#compare .comparison-layout { gap: 12px; }
+  .page#compare #donut svg { width: 260px; height: 260px; }
+  .page#compare .bars-card h2 { font-size: 25px; }
+  .page#compare .area-row { padding: 8px 0; }
+
+  .page#coasts { display: grid; grid-template-columns: 1.2fr .8fr; column-gap: 16px; row-gap: 10px; align-items: start; }
+  .page#coasts > .page-heading { grid-column: 1 / -1; grid-row: 1; }
+  .page#coasts > #coast-tabs { grid-column: 1 / -1; grid-row: 2; margin: 0; }
+  .page#coasts > .coast-layout { grid-column: 1; grid-row: 3 / span 3; min-height: 0; height: 330px; }
+  .page#coasts > .subheading { grid-column: 2; grid-row: 3; font-size: 25px; margin: 0; }
+  .page#coasts > #strait-buttons { grid-column: 2; grid-row: 4; margin: 0; }
+  .page#coasts > .strait-card { grid-column: 2; grid-row: 5; padding: 12px; gap: 7px; }
+  .page#coasts > .strait-card .strait-symbol { display: none; }
+  .page#coasts > .strait-card > div:last-child { padding-top: 7px; border-top: 1px solid #52757b; }
+  .page#coasts > #strait-note { grid-column: 2; grid-row: 6; margin: 0; font-size: 11px; }
+  .page#coasts > .note, .page#coasts > .next-section { display: none; }
 }
 
 @media (max-width: 900px) {
+  .page#coasts { display: block; }
+  .hero { grid-template-areas: "copy globe" "detail detail"; }
+  .hero > .detail-card { display: none; }
+  .hero-copy { grid-area: copy; }
+  .hero > .detail-card { grid-area: detail; }
   .globe-card { position: relative; }
   .globe-selection { margin-top: 12px; }
   .globe-selection .section-heading { margin: 12px 0 14px; }
@@ -48,7 +87,17 @@
 }
 
 @media (max-width: 640px) {
-  .hero { gap: 13px; padding-top: 18px; }
+  .page .page-heading { padding: 12px 0 8px; }
+  .page .page-heading .eyebrow { font-size: 9px; letter-spacing: 1.2px; }
+  .page .page-heading h1 { font-size: 32px; margin: 5px 0 8px; }
+  .page .page-heading .lead { font-size: 11px; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .globe-card { display: flex; flex-direction: column; }
+  .globe-top { order: 1; }
+  #world { order: 2; }
+  .quick-ocean-detail { order: 3; }
+  .globe-footer { order: 4; }
+  .globe-selection { order: 5; }
+  .hero { display: flex; gap: 13px; padding-top: 18px; }
   .hero-copy { padding-top: 0; }
   .hero h1 { font-size: 40px; margin-bottom: 9px; }
   .hero .lead { font-size: 13px; line-height: 1.5; }
@@ -56,22 +105,118 @@
   .hero-meta b { font-size: 21px; }
   .hero .primary { min-height: 37px; padding: 7px 12px; }
   .hero-tip { display: none; }
-  #world { height: 145px; }
+  #world { height: 60px; }
+  .globe-footer { display: none; }
   .globe-selection .section-heading { display: none; }
   .globe-selection .ocean-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
-  .globe-selection .ocean-button { min-height: 44px; padding: 5px 8px; }
+  .globe-selection .ocean-button { min-height: 36px; padding: 4px 7px; }
   .globe-selection .ocean-button b { font-size: 11px; }
   .globe-selection .ocean-button small { font-size: 9px; }
-  .model-wrap #model-canvas { height: 280px; }
+  .model-wrap #model-canvas { height: 210px; }
+  .quick-ocean-detail { display: block; margin-top: 5px; padding: 6px 8px; border-radius: 12px; background: #e7f0e8; }
+  .quick-ocean-detail h3 { font: 18px var(--serif); margin: 1px 0 2px; }
+  .quick-ocean-detail p:not(.eyebrow) { color: var(--muted); font-size: 9px; line-height: 1.2; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+  .quick-ocean-detail > div { margin-top: 2px; font: 17px var(--serif); }
+  .quick-ocean-detail small { font: 10px var(--sans); color: var(--muted); }
+  .page#compare .two-cards, .page#compare .source-note, .page#compare > .next-section { display: none; }
+  .page#compare .comparison-layout { grid-template-columns: 1fr 1fr; gap: 7px; }
+  .page#compare #donut svg { width: 145px; height: 145px; }
+  .page#compare .chart-card, .page#compare .bars-card { padding: 9px; }
+  .page#compare .chart-card .small, .page#compare .bars-card .small { font-size: 9px; line-height: 1.25; }
+  .page#compare .bars-card h2 { font-size: 17px; }
+  .page#compare .area-row { padding: 4px 0; }
+  .page#compare .area-row label, .page#compare .area-row strong { font-size: 10px; }
+  .page#compare .chart-insight { margin-top: 7px; padding: 7px; font-size: 9px; line-height: 1.25; }
+  .page#coasts .subheading, .page#coasts #strait-buttons, .page#coasts .strait-card, .page#coasts #strait-note, .page#coasts > .note, .page#coasts > .next-section { display: none; }
+  .page#coasts .page-heading { padding: 18px 0 12px; }
+  .page#coasts .page-heading h1 { font-size: 38px; margin-bottom: 12px; }
+  .page#coasts .page-heading .lead { font-size: 13px; line-height: 1.45; }
+  .page#coasts .coast-picture { min-height: 170px; }
+  .page#coasts .coast-explanation { padding: 14px; }
+  .page#coasts .coast-explanation h2 { font-size: 24px; }
+  .page#coasts .coast-explanation > p:not(.eyebrow) { font-size: 12px; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .page#coasts .page-heading { padding: 12px 0 8px; }
+  .page#coasts .page-heading h1 { font-size: 32px; margin: 5px 0 8px; }
+  .page#coasts .page-heading .lead { font-size: 11px; line-height: 1.3; }
+  .page#coasts .coast-picture { min-height: 125px; }
+  .page#life .life-banner { min-height: 125px; }
+  .page#life .life-banner-copy { padding: 14px; }
+  .page#life .life-banner-copy h2 { font-size: 25px; margin: 5px 0; }
+  .page#life .life-banner-copy p { font-size: 10px; line-height: 1.25; }
+  .page#life .illustration-label { display: none; }
+  .page#life .creature-grid { gap: 5px; margin-top: 8px; }
+  .page#life .creature-button { padding: 5px 3px 7px; font-size: 9px; }
+  .page#life .creature-button svg { width: 42px; height: 42px; margin-bottom: 3px; }
+  .page#life .creature-detail { grid-template-columns: 65px 1fr; gap: 8px; padding: 10px; margin-top: 8px; }
+  .page#life .creature-detail svg { width: 60px; height: 60px; }
+  .page#life .creature-detail h2 { font-size: 20px; margin: 3px 0; }
+  .page#life .creature-detail p:not(.eyebrow) { font-size: 10px; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .page#life > .note, .page#life > .next-section { display: none; }
+  .page#quiz .quiz-shell { padding: 12px; margin-bottom: 8px; }
+  .page#quiz .quiz-top { margin-bottom: 7px; }
+  .page#quiz .quiz-question { font-size: 19px; margin: 12px 0 10px; }
+  .page#quiz .quiz-option { padding: 8px 9px; font-size: 11px; gap: 7px; }
+  .page#quiz .quiz-option > span { width: 20px; height: 20px; font-size: 9px; }
+  .page#quiz .feedback { padding: 9px; margin-top: 8px; font-size: 10px; }
+  .page#quiz > .note { display: none; }
 }
 
 @media (max-width: 380px) {
+  .globe-card { padding: 10px; }
   .hero h1 { font-size: 36px; }
   .hero .lead { font-size: 12px; }
   .hero-meta b { font-size: 19px; }
   .hero .primary { min-height: 34px; font-size: 12px; }
-  #world { height: 105px; }
-  .globe-selection .ocean-button { min-height: 40px; padding: 4px 7px; }
+  #world { height: 70px; }
+  .quick-ocean-detail { padding: 4px 6px; }
+  .quick-ocean-detail h3 { font-size: 16px; }
+  .quick-ocean-detail p:not(.eyebrow) { font-size: 8px; }
+  .quick-ocean-detail > div { font-size: 15px; }
+  .page#coasts .coast-picture { min-height: 50px; }
+  .page#coasts .page-heading h1 { font-size: 28px; }
+  .page#coasts .page-heading .lead { font-size: 10px; }
+  .page#coasts .coast-explanation { padding: 6px; }
+  .globe-selection .ocean-button { min-height: 32px; padding: 3px 6px; }
   .globe-selection .ocean-button b { font-size: 10px; }
   .globe-selection .ocean-button small { font-size: 8px; }
+}
+
+@media (min-width: 901px) and (max-height: 800px) {
+  .page .page-heading { padding: 12px 0 8px; }
+  .page .page-heading h1 { font-size: 40px; margin: 5px 0 8px; }
+  .page .page-heading .lead { font-size: 13px; line-height: 1.35; }
+  .page#coasts > #coast-tabs, .page#model > #model-choices { margin-top: 0; }
+  .page#coasts > #coast-tabs button, .page#model > #model-choices button { padding: 8px 12px; }
+  #world { height: 180px; }
+  .globe-selection .ocean-button { min-height: 50px; padding: 6px 8px; }
+  .hero > .detail-card { padding: 8px 12px; gap: 3px; }
+  .hero > .detail-card h3 { font-size: 21px; margin: 2px 0 3px; }
+  .hero > .detail-card p:not(.eyebrow) { font-size: 10px; line-height: 1.2; }
+  .hero > .detail-card .detail-stat { padding-top: 4px; }
+  .hero > .detail-card .detail-stat span { font-size: 22px; }
+  .page#compare #donut svg { width: 170px; height: 170px; }
+  .page#compare .chart-card, .page#compare .bars-card { padding: 11px; }
+  .page#compare .area-row { padding: 5px 0; }
+  .page#compare .chart-insight { min-height: 30px; padding: 6px; font-size: 11px; }
+}
+
+@media (min-width: 901px) and (max-height: 740px) {
+  .page .page-heading { padding: 6px 0 5px; }
+  .page .page-heading h1 { font-size: 32px; margin: 3px 0 5px; }
+  .page .page-heading .lead { font-size: 11px; line-height: 1.25; }
+  .hero { padding-top: 10px; padding-bottom: 10px; }
+  #world { height: 70px; }
+  .globe-selection .ocean-button { min-height: 46px; }
+  .hero > .detail-card { padding: 6px 10px; gap: 2px; }
+  .hero > .detail-card h3 { font-size: 18px; }
+  .hero > .detail-card p:not(.eyebrow) { font-size: 9px; }
+  .hero > .detail-card .detail-stat span { font-size: 20px; }
+  .page#compare #donut svg { width: 145px; height: 145px; }
+  .page#compare .chart-card, .page#compare .bars-card { padding: 8px; }
+  .page#compare .area-row { padding: 3px 0; }
+  .page#compare .chart-insight { min-height: 30px; padding: 6px; font-size: 11px; }
+  .page#coasts > .coast-layout { height: 280px; }
+  .model-wrap #model-canvas { height: 220px; }
+  .page#quiz .quiz-shell { padding: 16px; }
+  .page#quiz .quiz-question { font-size: 23px; margin: 16px 0 13px; }
 }
