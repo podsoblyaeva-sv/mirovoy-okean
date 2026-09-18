@@ -1,0 +1,77 @@
+/* Компактный режим: интерактив и его управление остаются в одном экране. */
+@media (min-width: 901px) {
+  main { max-width: 1400px; }
+  .hero { padding: 24px 0 20px; gap: 24px; align-items: start; }
+  .hero-copy { padding-top: 22px; }
+  .globe-card { padding: 14px; display: grid; grid-template-columns: minmax(0, 1fr) 190px; grid-template-areas: "top top" "world select" "footer footer"; column-gap: 12px; }
+  .globe-top { grid-area: top; }
+  #world { grid-area: world; height: 300px; }
+  .globe-footer { grid-area: footer; }
+  .globe-selection { grid-area: select; align-self: center; margin-top: 0; }
+  .globe-selection .section-heading { display: block; margin: 0 0 10px; }
+  .globe-selection .section-heading h2 { font-size: 20px; margin-top: 5px; }
+  .globe-selection .section-heading .eyebrow { font-size: 9px; letter-spacing: 1.3px; }
+  .globe-selection .section-heading > p { font-size: 10px; margin-top: 7px; }
+  .globe-selection .ocean-grid { grid-template-columns: 1fr; gap: 6px; }
+  .globe-selection .ocean-button { min-height: 58px; padding: 8px 10px; }
+  .globe-selection .ocean-dot { margin-bottom: 6px; width: 8px; height: 8px; }
+  .globe-selection .ocean-button b { font-size: 12px; }
+  .globe-selection .ocean-button small { font-size: 10px; }
+  .globe-selection .ocean-arrow { top: 8px; right: 10px; font-size: 14px; }
+
+  .page-heading { padding: 28px 0 18px; }
+  .page-heading .lead { font-size: 16px; }
+  .model-wrap #model-canvas { height: 365px; }
+  .model-toolbar { top: 12px; }
+  .model-info { margin-top: 12px; padding: 16px 20px; }
+  .model-info h3 { font-size: 25px; }
+  .model-info p:not(.eyebrow) { font-size: 13px; }
+  .page#model > .note { margin-top: 12px; padding: 14px 18px; }
+  .page#coasts .coast-picture { min-height: 280px; }
+  .page#coasts .coast-explanation { padding: 24px; }
+  .page#life .life-banner { min-height: 250px; }
+  .page#life .creature-grid { margin-top: 14px; }
+  .page#life .creature-detail { margin-top: 12px; padding: 18px 22px; }
+}
+
+@media (max-width: 900px) {
+  .globe-card { position: relative; }
+  .globe-selection { margin-top: 12px; }
+  .globe-selection .section-heading { margin: 12px 0 14px; }
+  .globe-selection .section-heading h2 { font-size: 24px; }
+  .globe-selection .section-heading > p { font-size: 11px; }
+  .globe-selection .ocean-grid { gap: 7px; }
+  .globe-selection .ocean-button { min-height: 90px; padding: 12px; }
+  .globe-selection .ocean-button b { font-size: 12px; }
+  .globe-selection .ocean-button small { font-size: 10px; }
+  .model-wrap #model-canvas { height: 360px; }
+}
+
+@media (max-width: 640px) {
+  .hero { gap: 13px; padding-top: 18px; }
+  .hero-copy { padding-top: 0; }
+  .hero h1 { font-size: 40px; margin-bottom: 9px; }
+  .hero .lead { font-size: 13px; line-height: 1.5; }
+  .hero-meta { margin: 8px 0; }
+  .hero-meta b { font-size: 21px; }
+  .hero .primary { min-height: 37px; padding: 7px 12px; }
+  .hero-tip { display: none; }
+  #world { height: 145px; }
+  .globe-selection .section-heading { display: none; }
+  .globe-selection .ocean-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+  .globe-selection .ocean-button { min-height: 44px; padding: 5px 8px; }
+  .globe-selection .ocean-button b { font-size: 11px; }
+  .globe-selection .ocean-button small { font-size: 9px; }
+  .model-wrap #model-canvas { height: 280px; }
+}
+
+@media (max-width: 380px) {
+  .hero h1 { font-size: 36px; }
+  .hero .lead { font-size: 12px; }
+  .hero-meta b { font-size: 19px; }
+  .hero .primary { min-height: 34px; font-size: 12px; }
+  #world { height: 105px; }
+  .globe-selection .ocean-button { min-height: 40px; padding: 4px 7px; }
+  .globe-selection .ocean-button b { font-size: 10px; }
+  .globe-selection .ocean-button small { font-size: 8px; }
+}
